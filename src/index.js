@@ -6,10 +6,10 @@ dotenv.config();
 import snippetRouter from "./Routers/index.js"
 
 const app=express();
-
+const liveLink = 'https://savesnippet.onrender.com';
 app.use(cors({
   origin: function (origin, callback) {
-    const allowedOrigins = ['http://localhost:5173', 'http://localhost:8080'];
+    const allowedOrigins = ['http://localhost:5173', 'http://localhost:8080', liveLink];
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
@@ -21,7 +21,7 @@ app.use(cors({
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send({message: "Hello World"});
+  res.send({message: "Server is running."});
 });
 
 app.use("/api/snippet" , snippetRouter)
@@ -31,7 +31,7 @@ app.use("/api/snippet" , snippetRouter)
 const startServer=async()=>{
   try{
       connectDB(process.env.MONGO_URL);
-      app.listen(8080, ()=>console.log("Server started on http://localhost:8080"));
+      app.listen(8080, ()=>console.log("Server started on ",liveLink));
   } catch(error){
       console.log(error);
   }
