@@ -7,7 +7,7 @@ import snippetRouter from "./Routers/index.js"
 
 const app=express();
 const backendliveLink = 'https://savesnippet.onrender.com';
-const frontendLiveLink = 'https://save-snippet.web.app/';
+const frontendLiveLink = 'https://save-snippet.web.app';
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = ['http://localhost:5173', 'http://localhost:8080', backendliveLink, frontendLiveLink];
